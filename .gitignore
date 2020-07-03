@@ -1,0 +1,9 @@
+# Python
+venv/
+
+# VS Code
+.vscode/
+
+# Django
+*.pyc
+db.sqlite3
