@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocablog</title>
+</head>
+<body>
+    <h1>Vocablog: {{ word }}</h1>
+    {% for definition in definitions %}
+        <p>[{{ forloop.counter }}] {{ definition }}</p>
+    {% endfor %}
+    <p>You can also view <a href="https://www.merriam-webster.com/dictionary/{{ word }}">more info on {{ word }} at Merriam Webster</a></p>
+</body>
+</html>
