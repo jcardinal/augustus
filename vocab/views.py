@@ -1,7 +1,7 @@
 import requests
 from django.shortcuts import render
 from django.http import HttpResponse
-from vocab.models import Word
+from vocab.models import Word, Definition, Example
 from django.contrib.auth.models import User
 from django.conf import settings
 
@@ -20,6 +20,9 @@ def word(request, word):
         new_entry = Word(word=word, data=r.json(), user=User.objects.first())
         new_entry.save()
         defs = r.json()[0]['shortdef']
+        for defn in defs:
+            d = Definition(word=new_entry, text=defn)
+            d.save()
 
     context = {
         'word': word,
