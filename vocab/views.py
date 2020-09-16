@@ -27,6 +27,7 @@ def word(request, word):
         for defn in defs:
             d = Definition(word=new_entry, text=defn)
             d.save()
+        examples = []
 
     context = {
         'word': word,
