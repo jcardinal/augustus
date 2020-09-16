@@ -14,6 +14,10 @@ def word(request, word):
     w = Word.objects.filter(word=word).first()
     if w and w.word == word:
         defs = w.data[0]['shortdef']
+        examples_qs = Example.objects.filter(word=w)
+        examples = []
+        for example in examples_qs:
+            examples.append(example.text)
     else:
         r = requests.get(
             f'https://www.dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={settings.MW_DICT_API_KEY}')
@@ -26,6 +30,7 @@ def word(request, word):
 
     context = {
         'word': word,
-        'definitions': defs
+        'definitions': defs,
+        'examples': examples
     }
     return render(request, 'vocab/word.html', context)

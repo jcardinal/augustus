@@ -6,9 +6,22 @@
     <title>Augustus</title>
 </head>
 <body>
-    <h1>Augustus: {{ word }}</h1>
+    <h1>{{ word }}</h1>
+    {% if definitions|length > 1%}
+    <h2>Definitions</h2>
+    {% else %}
+    <h2>Definition</h2>
+    {% endif %}
     {% for definition in definitions %}
         <p>[{{ forloop.counter }}] {{ definition }}</p>
+    {% endfor %}
+    {% if examples|length > 1 %}
+        <h2>Examples</h2>
+    {% elif examples|length == 1%}
+        <h2>Example</h2>
+    {% endif %}
+    {% for example in examples %}
+        <p>[{{ forloop.counter }}] {{ example }}</p>
     {% endfor %}
     <p>You can also view <a href="https://www.merriam-webster.com/dictionary/{{ word }}">more info on {{ word }} at Merriam Webster</a></p>
 </body>
