@@ -23,6 +23,12 @@
     {% for example in examples %}
         <p>[{{ forloop.counter }}] {{ example }}</p>
     {% endfor %}
+    <h2>Add example</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
     <p>You can also view <a href="https://www.merriam-webster.com/dictionary/{{ word }}">more info on {{ word }} at Merriam Webster</a></p>
 </body>
 </html>
