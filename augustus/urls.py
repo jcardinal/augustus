@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import include, path
+from django.views.generic.base import RedirectView
 from users import views as users_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +27,6 @@ urlpatterns = [
     path('accts/profile/', users_views.profile, name='profile'),
     path('accts/login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('accts/logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon.ico'))),
     path('', include("vocab.urls")),
 ]
