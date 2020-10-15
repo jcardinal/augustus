@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from vocab.models import Word, Definition, Example
 from vocab.forms import AddExampleForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.urls import reverse
 
@@ -12,6 +13,7 @@ def home(request):
     return render(request, 'vocab/home.html')
 
 
+@login_required
 def word(request, word):
     w = Word.objects.filter(word=word).first()
     if w and w.word == word:
